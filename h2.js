@@ -247,7 +247,6 @@ if (cluster.isMaster) {
             }
         }, RESTART_DELAY);
     };
-}
 
 
     const handleRAMUsage = () => {
